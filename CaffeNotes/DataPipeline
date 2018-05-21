@@ -1,0 +1,26 @@
+
+Recommended dataset format LMDB
+
+In order to create your own LMDB dataset:
+
+Write a script to copy all images in one directory with class identifier appended as prefix.
+
+So for instance we have 2 images, one for each class, it will look somewhat like,
+E.g. 0_image1.jpg, 1_image2.jpg
+
+Create train and test sets by defining the files that belong to train and test set in files called train.txt and test.txt respectively.
+
+The format of train.txt would be, [$filename] [$label]
+for example:
+1_image2.jpg 1
+0_image1.jpg 0
+
+In order to facilitate learning I have written the script to do the above 4 steps for you in dogsdatasetmaker.ipynb, simply set the paths correctly and run.
+
+Once your data is in the described form, use caffes script “create_imagenet.sh”. The script is located in $CAFFE_ROOT/examples/imagenet/create_imagenet.sh
+
+Set the parameters in the file according to your own requirements. Once done, execute the script from $CAFFE_ROOT by passing the following command:
+	./examples/imagenet/create_imagenet.sh
+
+This will output lmdb files that you can use to train you own model.
+
